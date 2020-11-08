@@ -95,7 +95,30 @@ def aws_functions(loc, choice, ip=""):
                   os.system("tput setaf 7")
                   os.system("clear")
               
+              
               elif x==2:
+                  os.system("tput setaf 4")
+                  print("Enter the name of the key-pair : ")
+                  os.system("tput setaf 7")
+                  key_name = input()
+                  os.system("tput setaf 3")
+                  print("Creating key pair...........")
+                  os.system("tput setaf 7")
+                  if os.system("aws ec2 create-key-pair --key-name %s" %key_name)==0:
+                      os.system("tput setaf 3")
+                      print("Key pair created successfully")
+                  else:
+                      os.system("tput setaf 1")
+                      print("Cannot create the key")
+
+                  os.system("tput setaf 2")
+                  input("Press any key to continue")
+                  os.system("tput setaf 7")
+                  os.system("clear")
+              
+              
+              
+              elif x==3:
                   os.system("tput setaf 4")
                   print("Enter the AMI name : ")
                   os.system("tput setaf 7")
@@ -155,7 +178,7 @@ def aws_functions(loc, choice, ip=""):
                   os.system("clear")
 
 
-              elif x==3:
+              elif x==4:
                   os.system("tput setaf 4")
                   print("Enter the instance IDs (Space separated if more than one): ")
                   os.system("tput setaf 7")
@@ -190,7 +213,7 @@ def aws_functions(loc, choice, ip=""):
                   os.system("tput setaf 7")
                   os.system("clear")
 
-              elif x==4:
+              elif x==5:
                   os.system("tput setaf 4")
                   print("Enter the instance IDs (Space separated if more than one): ")
                   os.system("tput setaf 7")
@@ -771,6 +794,27 @@ def aws_functions(loc, choice, ip=""):
               
               elif x==2:
                   os.system("tput setaf 4")
+                  print("Enter the name of the key-pair : ")
+                  os.system("tput setaf 7")
+                  key_name = input()
+                  os.system("tput setaf 3")
+                  print("Creating key pair...........")
+                  os.system("tput setaf 7")
+                  if os.system("ssh %s aws ec2 create-key-pair --key-name %s" %(remoteip, key_name))==0:
+                      os.system("tput setaf 3")
+                      print("Key pair created successfully")
+                  else:
+                      os.system("tput setaf 1")
+                      print("Cannot create the key")
+                  
+                  os.system("tput setaf 2")
+                  input("Press any key to continue")
+                  os.system("tput setaf 7")
+                  os.system("clear")
+              
+              
+              elif x==3:
+                  os.system("tput setaf 4")
                   print("Enter the AMI name : ")
                   os.system("tput setaf 7")
                   ami_name = input()
@@ -829,7 +873,7 @@ def aws_functions(loc, choice, ip=""):
                   os.system("clear")
 
 
-              elif x==3:
+              elif x==4:
                   os.system("tput setaf 4")
                   print("Enter the instance IDs (Space separated if more than one): ")
                   os.system("tput setaf 7")
@@ -864,7 +908,7 @@ def aws_functions(loc, choice, ip=""):
                   os.system("tput setaf 7")
                   os.system("clear")
 
-              elif x==4:
+              elif x==5:
                   os.system("tput setaf 4")
                   print("Enter the instance IDs (Space separated if more than one): ")
                   os.system("tput setaf 7")
@@ -1368,9 +1412,10 @@ def aws_functions(loc, choice, ip=""):
 def ec2_menu():
     print("\n\t\t####################################################################")
     print("""\t\t\t Press 1: Describe running instances
-             \t\t Press 2: Launch an instance
-             \t\t Press 3: Stop/Start an instance
-             \t\t Press 4: Terminate an instance
+             \t\t Press 2: Create a key pair
+             \t\t Press 3: Launch an instance
+             \t\t Press 4: Stop/Start an instance
+             \t\t Press 5: Terminate an instance
              \t\t Press 9: Back""")
     print("\t\t####################################################################")
 
