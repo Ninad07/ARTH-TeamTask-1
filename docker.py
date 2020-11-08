@@ -4,12 +4,14 @@ def docker_menu():
     print("\n\t\t####################################################################")
     print("""\t\t\t Press 1: Configure Docker
 	     \t\t Press 2: Start Docker services
-	     \t\t Press 3: Pull OS Images
-             \t\t Press 4: Launch a container
-             \t\t Press 5: Stat a container
-             \t\t Press 6: Stop a container
-             \t\t Press 7: Delete a container
-	     \t\t Press 8: Configure httpd server inside a container
+             \t\t Press 3: List OS images
+	     \t\t Press 4: Pull OS Images
+             \t\t Press 5: List running containers
+             \t\t Press 6: Launch a container
+             \t\t Press 7: Start a container
+             \t\t Press 8: Stop a container
+             \t\t Press 10: Delete a container
+	     \t\t Press 11: Configure httpd server inside a container
              \t\t Press 9: Back
              \t\t Press 0: Exit""")
     print("\n\t\t####################################################################")
@@ -47,8 +49,21 @@ def docker_functions(loc, choice, ip=""):
             input("Press any key to continue")
             os.system("tput setaf 7")
             os.system("clear")
-        
+
         elif choice==3:
+            os.system("tput setaf 4")
+            print("Retrieving available OS images.......")
+            os.system("tput setaf 7")
+            if os.system("docker images")!=0:
+                os.system("tput setaf 1")
+                print("Failed")
+            os.system("tput setaf 2")
+            input("Press any key to continue")
+            os.system("tput setaf 7")
+            os.system("clear")
+
+        
+        elif choice==4:
             os.system("tput setaf 4")
             print("Enter the name of the image to be pulled : ")
             os.system("tput setaf 7")
@@ -68,7 +83,21 @@ def docker_functions(loc, choice, ip=""):
             os.system("tput setaf 7")
             os.system("clear")
 
-        elif choice==4:
+        
+        elif choice==5:
+            os.system("tput setaf 4")
+            print("Retrieving list of running containers.......")
+            os.system("tput setaf 7")
+            if os.system("docker ps")!=0:
+                os.system("tput setaf 1")
+                print("Failed")
+            os.system("tput setaf 2")
+            input("Press any key to continue")
+            os.system("tput setaf 7")
+            os.system("clear")
+
+        
+        elif choice==6:
             os.system("tput setaf 4")
             print("Enter the name of the container : ")
             os.system("tput setaf 7")
@@ -92,7 +121,7 @@ def docker_functions(loc, choice, ip=""):
             os.system("tput setaf 7")
             os.system("clear")
 
-        elif choice==5:
+        elif choice==7:
             os.system("tput setaf 7")
             os.system("tput setaf 4")
             print("Enter the name/id of the container : ")
@@ -108,7 +137,7 @@ def docker_functions(loc, choice, ip=""):
                 os.system("tput setaf 1")
                 print("Cannot start the container")
             
-        elif choice==6:
+        elif choice==8:
                 os.system("tput setaf 4")
                 print("Enter the name/id of the container : ")
                 os.system("tput setaf 7")
@@ -123,7 +152,7 @@ def docker_functions(loc, choice, ip=""):
                     os.system("tput setaf 1")
                     print("Cannot stop the container")
 
-        elif choice==7:
+        elif choice==10:
             os.system("tput setaf 4")
             print("Enter the name/id of the container : ")
             os.system("tput setaf 7")
@@ -138,7 +167,7 @@ def docker_functions(loc, choice, ip=""):
                 os.system("tput setaf 1")
                 print("Cannot delete the container")
 
-        elif choice==8:
+        elif choice==11:
             os.system("tput setaf 4")
             print("Enter the name/id of the container : ")
             os.system("tput setaf 7")
@@ -205,6 +234,20 @@ def docker_functions(loc, choice, ip=""):
         
         elif choice==3:
             os.system("tput setaf 4")
+            print("Retrieving available OS images.......")
+            os.system("tput setaf 7")
+            if os.system("ssh %s docker images" %remoteip)!=0:
+                os.system("tput setaf 1")
+                print("Failed")
+            os.system("tput setaf 2")
+            input("Press any key to continue")
+            os.system("tput setaf 7")
+            os.system("clear")
+
+
+
+        elif choice==4:
+            os.system("tput setaf 4")
             print("Enter the name of the image to be pulled : ")
             os.system("tput setaf 7")
             image = input()
@@ -223,7 +266,20 @@ def docker_functions(loc, choice, ip=""):
             os.system("tput setaf 7")
             os.system("clear")
 
-        elif choice==4:
+        elif choice==5:
+            os.system("tput setaf 4")
+            print("Retrieving list of running containers.......")
+            os.system("tput setaf 7")
+            if os.system("ssh %s docker ps" %remoteip)!=0:
+                os.system("tput setaf 1")
+                print("Failed")
+            os.system("tput setaf 2")
+            input("Press any key to continue")
+            os.system("tput setaf 7")
+            os.system("clear")
+
+        
+        elif choice==6:
             os.system("tput setaf 4")
             print("Enter the name of the container : ")
             os.system("tput setaf 7")
@@ -247,7 +303,7 @@ def docker_functions(loc, choice, ip=""):
             os.system("tput setaf 7")
             os.system("clear")
 
-        elif choice==5:
+        elif choice==7:
             os.system("tput setaf 7")
             os.system("tput setaf 4")
             print("Enter the name/id of the container : ")
@@ -263,7 +319,7 @@ def docker_functions(loc, choice, ip=""):
                 os.system("tput setaf 1")
                 print("Cannot start the container")
             
-        elif choice==6:
+        elif choice==8:
                 os.system("tput setaf 4")
                 print("Enter the name/id of the container : ")
                 os.system("tput setaf 7")
@@ -278,7 +334,7 @@ def docker_functions(loc, choice, ip=""):
                     os.system("tput setaf 1")
                     print("Cannot stop the container")
 
-        elif choice==7:
+        elif choice==10:
             os.system("tput setaf 4")
             print("Enter the name/id of the container : ")
             os.system("tput setaf 7")
@@ -293,7 +349,7 @@ def docker_functions(loc, choice, ip=""):
                 os.system("tput setaf 1")
                 print("Cannot delete the container")
 
-        elif choice==8:
+        elif choice==11:
             os.system("tput setaf 4")
             print("Enter the name/id of the container : ")
             os.system("tput setaf 7")
